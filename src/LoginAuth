@@ -1,0 +1,36 @@
+import java.util.HashMap;
+import java.util.Scanner;
+
+public class LoginSystem {
+    private static HashMap<String, String> users = new HashMap<>();
+
+    // Initialize users (Replace with DB or File Storage in real cases)
+    static {
+        users.put("admin", "password123");
+        users.put("user1", "pass456");
+        users.put("testUser", "testPass");
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.print("Enter username: ");
+        String username = scanner.nextLine();
+
+        System.out.print("Enter password: ");
+        String password = scanner.nextLine();
+
+        if (authenticate(username, password)) {
+            System.out.println("Login successful! Welcome, " + username + ".");
+        } else {
+            System.out.println("Login failed! Invalid username or password.");
+        }
+
+        scanner.close();
+    }
+
+    // Authentication method
+    private static boolean authenticate(String username, String password) {
+        return users.containsKey(username) && users.get(username).equals(password);
+    }
+}
