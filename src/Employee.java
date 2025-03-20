@@ -1,3 +1,6 @@
+/*TODO: add setters and getters for adding employees
+ * 
+ */
 class Employee extends User {
     private String firstName;
     private String lastName;
