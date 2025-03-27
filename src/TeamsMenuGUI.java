@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 
 public class TeamsMenuGUI {
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(TeamsMenu::createAndShowGUI);
+        SwingUtilities.invokeLater(TeamsMenuGUI::createAndShowGUI);
     }
 
     private static void createAndShowGUI() {
