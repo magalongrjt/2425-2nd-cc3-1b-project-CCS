@@ -76,4 +76,12 @@ public class GUI extends JFrame implements ActionListener{
             message.setVisible(true);
         }
     }
+        
+public class Main {
+    public static void main(String[] args) {
+        new GUI();
+    }
+}
+
+        
 }
