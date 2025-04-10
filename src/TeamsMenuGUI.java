@@ -1,5 +1,5 @@
-import javax.swing.*;
 import java.awt.*;
+import javax.swing.*;
 
 public class TeamsMenuGUI extends JFrame {
 
@@ -8,6 +8,27 @@ public class TeamsMenuGUI extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(800, 500);
         setLayout(new BorderLayout());
+
+        // Navigation Bar
+        JMenuBar menuBar = new JMenuBar();
+        JMenu navigationMenu = new JMenu("Navigate");
+
+        JMenuItem teamsItem = new JMenuItem("Teams");
+        JMenuItem payrollItem = new JMenuItem("Payroll");
+
+        teamsItem.addActionListener(e -> {
+            dispose();
+            new TeamsMenuGUI();
+        });
+
+        payrollItem.addActionListener(e -> {
+            new PayrollGUI();
+        });
+
+        navigationMenu.add(teamsItem);
+        navigationMenu.add(payrollItem);
+        menuBar.add(navigationMenu);
+        setJMenuBar(menuBar);
 
         JPanel mainPanel = new JPanel(new BorderLayout());
 
@@ -76,4 +97,4 @@ public class TeamsMenuGUI extends JFrame {
         add(mainPanel);
         setVisible(true);
     }
-}
+} 
