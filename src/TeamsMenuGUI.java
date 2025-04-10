@@ -1,3 +1,7 @@
+/**
+ * Main interface for managing teams and employees.
+ * Allows creating/removing teams and employees, viewing details.
+ */
 import java.awt.*;
 import javax.swing.*;
 import java.io.Serializable;
@@ -11,6 +15,7 @@ public class TeamsMenuGUI extends JFrame {
     private Team selectedTeam = null;
     private JPanel employeeListPanel;
     
+    // Labels for employee details
     private JLabel nameLabel;
     private JLabel emailLabel;
     private JLabel phoneLabel;
@@ -20,6 +25,9 @@ public class TeamsMenuGUI extends JFrame {
     private JLabel addressLabel;
     private JLabel teamLabel;
 
+    /**
+     * Creates the teams management window
+     */
     public TeamsMenuGUI() {
         setTitle("Employee Management");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -137,6 +145,9 @@ public class TeamsMenuGUI extends JFrame {
         setVisible(true);
     }
 
+    /**
+     * Updates the team list display
+     */
     private void updateTeamList(JPanel teamListPanel) {
         teamListPanel.removeAll();
         for (Team team : teams) {
@@ -151,6 +162,9 @@ public class TeamsMenuGUI extends JFrame {
         teamListPanel.repaint();
     }
 
+    /**
+     * Updates the employee list display
+     */
     private void updateEmployeeList(Team team) {
         employeeListPanel.removeAll();
         for (Employee employee : team.getEmployees()) {
@@ -162,6 +176,9 @@ public class TeamsMenuGUI extends JFrame {
         employeeListPanel.repaint();
     }
 
+    /**
+     * Updates the employee details display
+     */
     private void updateEmployeeDetails(Employee employee) {
         nameLabel.setText("Name: " + employee.getName());
         emailLabel.setText("Email: " + employee.getEmail());
@@ -173,6 +190,9 @@ public class TeamsMenuGUI extends JFrame {
         teamLabel.setText("Team: " + employee.getTeam());
     }
 
+    /**
+     * Loads teams from file
+     */
     private void initializeData() {
         try {
             File file = new File(dataFile);
@@ -186,6 +206,9 @@ public class TeamsMenuGUI extends JFrame {
         }
     }
 
+    /**
+     * Saves teams to file
+     */
     public static void saveTeamsData() {
         try {
             ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(dataFile));
@@ -196,10 +219,16 @@ public class TeamsMenuGUI extends JFrame {
         }
     }
 
+    /**
+     * Helper to save data
+     */
     private void saveData() {
         saveTeamsData();
     }
 
+    /**
+     * Adds a new team
+     */
     public void addTeam(String teamName) {
         Team newTeam = new Team(teamName);
         teams.add(newTeam);
@@ -210,6 +239,9 @@ public class TeamsMenuGUI extends JFrame {
         updateTeamList(teamListPanel);
     }
 
+    /**
+     * Removes a team
+     */
     public void removeTeam(Team team) {
         teams.remove(team);
         if (selectedTeam == team) {
@@ -225,18 +257,27 @@ public class TeamsMenuGUI extends JFrame {
         updateTeamList(teamListPanel);
     }
 
+    /**
+     * Adds an employee to a team
+     */
     public void addEmployee(Team team, Employee employee) {
         team.addEmployee(employee);
         saveData();
         updateEmployeeList(team);
     }
 
+    /**
+     * Removes an employee from a team
+     */
     public void removeEmployee(Team team, Employee employee) {
         team.removeEmployee(employee);
         saveData();
         updateEmployeeList(team);
     }
 
+    /**
+     * @return List of all teams
+     */
     public static List<Team> getTeams() {
         return teams;
     }

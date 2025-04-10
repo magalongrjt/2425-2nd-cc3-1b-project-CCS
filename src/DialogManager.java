@@ -1,9 +1,16 @@
+/**
+ * Manages dialog windows for adding/removing teams and employees.
+ * Handles user input and validation.
+ */
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.List;
 
 public class DialogManager {
+    /**
+     * Shows dialog to add a new team
+     */
     public static void showAddTeamDialog(TeamsMenuGUI parent) {
         JDialog dialog = new JDialog(parent, "Add Team", true);
         dialog.setLayout(new BorderLayout());
@@ -40,6 +47,9 @@ public class DialogManager {
         dialog.setVisible(true);
     }
 
+    /**
+     * Shows dialog to add a new employee
+     */
     public static void showAddEmployeeDialog(TeamsMenuGUI parent, Team team) {
         JDialog dialog = new JDialog(parent, "Add Employee", true);
         dialog.setLayout(new BorderLayout());
@@ -107,6 +117,9 @@ public class DialogManager {
         dialog.setVisible(true);
     }
 
+    /**
+     * Shows dialog to remove a team
+     */
     public static void showRemoveTeamDialog(TeamsMenuGUI parent, List<Team> teams) {
         if (teams.isEmpty()) {
             JOptionPane.showMessageDialog(parent, "No teams to remove", "Error", JOptionPane.ERROR_MESSAGE);
@@ -147,6 +160,9 @@ public class DialogManager {
         dialog.setVisible(true);
     }
 
+    /**
+     * Shows dialog to remove an employee
+     */
     public static void showRemoveEmployeeDialog(TeamsMenuGUI parent, Team team) {
         if (team.getEmployees().isEmpty()) {
             JOptionPane.showMessageDialog(parent, "No employees to remove", "Error", JOptionPane.ERROR_MESSAGE);

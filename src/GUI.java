@@ -1,6 +1,6 @@
-/*TODO: improve layout
-        add options menu
- *      add functionality to login 
+/**
+ * Login interface for the system.
+ * Handles user authentication and main menu access.
  */
 import javax.swing.*;
 import java.awt.*;
@@ -9,11 +9,15 @@ import java.awt.event.ActionListener;
 
 public class GUI extends JFrame implements ActionListener {
 
+    // UI Components
     JButton loginButton;
     JTextField userName;
     JTextField password;
     JLabel message;
 
+    /**
+     * Creates the login window
+     */
     GUI() {
 
         // TEMP CODE
@@ -62,6 +66,9 @@ public class GUI extends JFrame implements ActionListener {
         this.setVisible(true);
     }
 
+    /**
+     * Handles login button clicks
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == loginButton) {
@@ -73,6 +80,9 @@ public class GUI extends JFrame implements ActionListener {
         }
     }
 
+    /**
+     * Starts the application
+     */
     public static void main(String[] args) {
         new GUI();
     }

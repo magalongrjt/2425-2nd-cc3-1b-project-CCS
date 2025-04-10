@@ -1,3 +1,7 @@
+/**
+ * Interface for managing employee payroll.
+ * Handles salary calculations and payment tracking.
+ */
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -14,6 +18,9 @@ public class PayrollGUI extends JFrame {
     private List<Team> teams;
     private static final String PAYROLL_FILE = "payroll_data.ser";
 
+    /**
+     * Creates the payroll management window
+     */
     public PayrollGUI() {
         setTitle("Payroll Management");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -114,6 +121,9 @@ public class PayrollGUI extends JFrame {
         setVisible(true);
     }
 
+    /**
+     * Recalculates salary for a row
+     */
     private void recalculateTotal(int row) {
         try {
             Object hoursObj = tableModel.getValueAt(row, 2);
@@ -134,10 +144,16 @@ public class PayrollGUI extends JFrame {
         }
     }
 
+    /**
+     * Refreshes the payroll table
+     */
     private void refreshTable() {
         loadPayrollData();
     }
 
+    /**
+     * Loads payroll data from file
+     */
     private void loadPayrollData() {
         tableModel.setRowCount(0);
         try {
@@ -156,6 +172,9 @@ public class PayrollGUI extends JFrame {
         }
     }
 
+    /**
+     * Updates table with existing data
+     */
     private void updatePayrollData(Object[][] existingData) {
         java.util.Map<Integer, Object[]> existingRecords = new java.util.HashMap<>();
         for (Object[] row : existingData) {
@@ -192,6 +211,9 @@ public class PayrollGUI extends JFrame {
         }
     }
 
+    /**
+     * Creates new payroll records
+     */
     private void initializePayrollData() {
         List<Employee> allEmployees = new ArrayList<>();
         for (Team team : teams) {
@@ -214,6 +236,9 @@ public class PayrollGUI extends JFrame {
         }
     }
 
+    /**
+     * Saves payroll data to file
+     */
     private void savePayrollData() {
         try {
             int rowCount = tableModel.getRowCount();
@@ -234,6 +259,9 @@ public class PayrollGUI extends JFrame {
         }
     }
 
+    /**
+     * Starts the payroll application
+     */
     public static void main(String[] args) {
         SwingUtilities.invokeLater(PayrollGUI::new);
     }
